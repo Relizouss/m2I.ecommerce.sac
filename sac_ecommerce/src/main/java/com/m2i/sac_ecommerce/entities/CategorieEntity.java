@@ -18,11 +18,13 @@ public class CategorieEntity {
     public CategorieEntity() {
     }
 
+
     @Id
     @Column(name = "code_categorie")
     public int getCodeCategorie() {
         return codeCategorie;
     }
+
 
     public void setCodeCategorie(int codeCategorie) {
         this.codeCategorie = codeCategorie;
@@ -60,4 +62,6 @@ public class CategorieEntity {
     public int hashCode() {
         return Objects.hash(codeCategorie, nom, description);
     }
+
+
 }
