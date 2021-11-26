@@ -34,7 +34,7 @@ import java.util.NoSuchElementException;
 
         }
 
-        @GetMapping(value = "/{id}", produces = "application/json")
+        @GetMapping(value = "/{codeCategorie}", produces = "application/json")
         public ResponseEntity<CategorieEntity> get(@PathVariable int codeCategorie) {
             try {
                 CategorieEntity cat = catservice.findCategorie(codeCategorie);
@@ -51,7 +51,7 @@ import java.util.NoSuchElementException;
                 catservice.addCategorie(cat);
 
                 // création de l'url d'accès au nouvel objet => http://localhost:8080/api/categorie/20
-                URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cat.getCodeCategorie()).toUri();
+                URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{codeCategorie}").buildAndExpand(cat.getCodeCategorie()).toUri();
 
                 return ResponseEntity.created(uri).body(cat);
 
@@ -63,7 +63,7 @@ import java.util.NoSuchElementException;
 
         }
 
-        @PutMapping(value = "/{id}", consumes = "application/json")
+        @PutMapping(value = "/{codeCategorie}", consumes = "application/json")
         public void update(@PathVariable int codeCategorie, @RequestBody CategorieEntity cat) {
             try {
                 catservice.editCategorie(codeCategorie, cat);
@@ -76,7 +76,7 @@ import java.util.NoSuchElementException;
             }
         }
 
-        @DeleteMapping(value = "/{id}")
+        @DeleteMapping(value = "/{codeCategorie}")
         public ResponseEntity<Object> delete(@PathVariable int codeCategorie) {
             // Check sur l'existance de la ville, si ko => 404 not found
             try {
