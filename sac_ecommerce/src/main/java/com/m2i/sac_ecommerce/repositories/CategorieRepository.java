@@ -16,4 +16,5 @@ public interface CategorieRepository extends PagingAndSortingRepository<Categori
 
     public Page<CategorieEntity> findAll(Pageable pageable);
 
+
 }

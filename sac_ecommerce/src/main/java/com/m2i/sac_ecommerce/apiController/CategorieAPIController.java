@@ -59,8 +59,6 @@ import java.util.NoSuchElementException;
                 //return ResponseEntity.badRequest().build();
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
             }
-
-
         }
 
         @PutMapping(value = "/{codeCategorie}", consumes = "application/json")

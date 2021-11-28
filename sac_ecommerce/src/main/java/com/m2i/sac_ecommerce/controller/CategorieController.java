@@ -75,7 +75,7 @@ public class CategorieController {
         return catservice;
     }
 
-    @RequestMapping( method = { RequestMethod.GET , RequestMethod.POST} , value = "/edit/{id}" )
+    @RequestMapping( method = { RequestMethod.GET , RequestMethod.POST} , value = "/edit/{codeCategorie}" )
     public String editGetPost(Model model , @PathVariable int codeCategorie, HttpServletRequest request ){
         System.out.println( "Add Edit Categorie" + request.getMethod() );
 
@@ -111,7 +111,7 @@ public class CategorieController {
         }
     }
 
-    @GetMapping(value = "/delete/{id}")
+    @GetMapping(value = "/delete/{codeCategorie}")
     public String delete( @PathVariable int codeCategorie ){
         String message = "?success=true";
         try{

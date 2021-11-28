@@ -15,23 +15,23 @@ public class CategorieService {
 
     private CategorieRepository catrepository;
 
-    public CategorieService( CategorieRepository catrepository ){
+    public CategorieService(CategorieRepository catrepository) {
         this.catrepository = catrepository;
     }
 
-    public Page<CategorieEntity> findAllByPage(Integer pageNo, Integer pageSize , String search  ) {
+    public Page<CategorieEntity> findAllByPage(Integer pageNo, Integer pageSize, String search) {
         Pageable paging = PageRequest.of(pageNo, pageSize);
 
-        if( search != null && search.length() > 0 ){
-            return catrepository.findByNomContains(search, paging );
+        if (search != null && search.length() > 0) {
+            return catrepository.findByNomContains(search, paging);
         }
 
-        return catrepository.findAll( paging );
+        return catrepository.findAll(paging);
     }
-    
 
-    public Iterable<CategorieEntity> findAll(  String search  ) {
-        if( search != null && search.length() > 0 ){
+
+    public Iterable<CategorieEntity> findAll(String search) {
+        if (search != null && search.length() > 0) {
             return catrepository.findByNomContains(search);
         }
         return catrepository.findAll();
@@ -41,21 +41,20 @@ public class CategorieService {
         return catrepository.findById(codeCategorie).get();
     }
 
-    public void addCategorie( CategorieEntity cat) throws InvalidObjectException {
+    public void addCategorie(CategorieEntity cat) throws InvalidObjectException {
 
         catrepository.save(cat);
     }
 
-    public void editCategorie( int codeCategorie , CategorieEntity cat) throws InvalidObjectException , NoSuchElementException {
-        try{
+    public void editCategorie(int codeCategorie, CategorieEntity cat) throws InvalidObjectException {
+        try {
             CategorieEntity catExistante = catrepository.findById(codeCategorie).get();
 
-            catExistante.setCodeCategorie( cat.getCodeCategorie());
             catExistante.setNom(cat.getNom());
             catExistante.setDescription(cat.getDescription());
-            catrepository.save( catExistante);
+            catrepository.save(catExistante);
 
-        }catch ( NoSuchElementException e ){
+        } catch (NoSuchElementException e) {
             throw e;
         }
 
