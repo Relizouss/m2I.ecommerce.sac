@@ -15,4 +15,5 @@ public interface ClientRepository extends PagingAndSortingRepository<ClientEntit
 
     public Page<ClientEntity> findAll(Pageable pageable);
 
+
 }
