@@ -9,11 +9,11 @@ import java.util.Objects;
 @Table(name = "commande", schema = "m2i_db_ecommerce", catalog = "")
 public class CommandeEntity {
     private int idCommande;
-    private Date dateCommande;
-    private Timestamp dateLivraison;
+    private Timestamp dateCommande;
+    private Date dateLivraison;
     private ClientEntity idClient;
 
-    public CommandeEntity(Date dateCommande, Timestamp dateLivraison, ClientEntity idClient) {
+    public CommandeEntity(Timestamp dateCommande, Date dateLivraison, ClientEntity idClient) {
         this.dateCommande = dateCommande;
         this.dateLivraison = dateLivraison;
         this.idClient = idClient;
@@ -34,21 +34,21 @@ public class CommandeEntity {
 
     @Basic
     @Column(name = "date_commande")
-    public Date getDateCommande() {
+    public Timestamp getDateCommande() {
         return dateCommande;
     }
 
-    public void setDateCommande(Date dateCommande) {
+    public void setDateCommande(Timestamp  dateCommande) {
         this.dateCommande = dateCommande;
     }
 
     @Basic
     @Column(name = "date_livraison")
-    public Timestamp getDateLivraison() {
+    public Date  getDateLivraison() {
         return dateLivraison;
     }
 
-    public void setDateLivraison(Timestamp dateLivraison) {
+    public void setDateLivraison(Date  dateLivraison) {
         this.dateLivraison = dateLivraison;
     }
 
