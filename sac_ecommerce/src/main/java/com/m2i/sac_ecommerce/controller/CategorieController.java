@@ -56,7 +56,7 @@ public class CategorieController {
         String description = request.getParameter("description");
 
         // Préparation de l'entité à sauvegarder
-        CategorieEntity cat = new CategorieEntity(nom, description );
+       CategorieEntity cat = new CategorieEntity(nom, description );
 
         // Enregistrement en utilisant la couche service qui gère déjà nos contraintes
         try{
@@ -75,7 +75,7 @@ public class CategorieController {
         return catservice;
     }
 
-    @RequestMapping( method = { RequestMethod.GET , RequestMethod.POST} , value = "/edit/{id}" )
+    @RequestMapping( method = { RequestMethod.GET , RequestMethod.POST} , value = "/edit/{codeCategorie}" )
     public String editGetPost(Model model , @PathVariable int codeCategorie, HttpServletRequest request ){
         System.out.println( "Add Edit Categorie" + request.getMethod() );
 
@@ -104,20 +104,20 @@ public class CategorieController {
             try{
                 model.addAttribute("categorie" , catservice.findCategorie(codeCategorie));
             }catch ( NoSuchElementException e ){
-                return "redirect:/categorie?error=categorie%20introuvalble";
+                return "redirect:/categorie?error=Categorie%20introuvalble";
             }
 
             return "categorie/add_edit";
         }
     }
 
-    @GetMapping(value = "/delete/{id}")
+    @GetMapping(value = "/delete/{codeCategorie}")
     public String delete( @PathVariable int codeCategorie ){
         String message = "?success=true";
         try{
             catservice.delete(codeCategorie);
         }catch ( Exception e ){
-            message = "?error=categorie%20introuvalble";
+            message = "?error=Ville%20introuvalble";
         }
         return "redirect:/ville"+message;
     }
@@ -126,3 +126,4 @@ public class CategorieController {
         this.catservice = catservice;
     }
 }
+

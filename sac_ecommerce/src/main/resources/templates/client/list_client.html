@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="fr">
+<head class="mb-5" th:include="~{ fragments/head::#head }"></head>
+<body>
+
+<header class="mb-5" th:include="~{ fragments/header::#header }"></header>
+
+<main class="container">
+
+    <h1>Liste des Produits</h1>
+
+    <form method="get" action="/produit">
+        <div class="row my-4">
+            <div class="col-4">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" th:value="${search}" name="search" placeholder="Rechercher"
+                           aria-describedby="button-addon2">
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="fa fa-search"
+                                                                                                  aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="col-4">
+                <button type="submit" class="btn btn-primary">Rechercher</button>
+            </div>
+            <div class="col-4">
+                <a href="/produit/add" class="btn btn-primary">Ajouter un produit</a>
+            </div>
+        </div>
+    </form>
+
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Marque</th>
+            <th>Modele</th>
+            <th>Code Categorie</th>
+            <th>Prix achat</th>
+            <th>Prix vente</th>
+            <th>Quantité stock</th>
+            <th>Indisponible</th>
+            <th>Photo du Produit</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="produit : ${ produits }">
+            <td th:text="${ produit.idProduit}"></td>
+            <td th:text="${ produit.marque}"></td>
+            <td th:text="${ produit.modele}"></td>
+            <td th:text="${ produit.codeCategtorie}"></td>
+            <td th:text="${ produit.prixAchat}"></td>
+            <td th:text="${ produit.prixVente}"></td>
+            <td th:text="${ produit.quantiteStock}"></td>
+            <td th:text="${ produit.indisponible}"></td>
+            <td th:text="${ produit.photoProduit}"></td>
+            <td>
+                <a class="btn btn-secondary btn-sm" th:href="@{'/produit/edit/' + ${ produit.idProduit } }"><i
+                        class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                <button class="btn btn-danger btn-sm" th:onclick="|supprimer( 'produit' , ${produit.idProduit} )|"><i
+                        class="fa fa-trash-o" aria-hidden="true"></i></button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+<footer th:include="~{ fragments/footer::#footer }"></footer>
+
+</body>
+</html>
