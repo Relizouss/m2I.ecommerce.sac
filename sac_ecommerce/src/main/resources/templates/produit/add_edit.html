@@ -5,46 +5,77 @@
 <header class="mb-5" th:include="~{ fragments/header::#header }"></header>
 
 <main class="container">
-    <h1 th:if="">Ajouter un utilisateur</h1>
-    <h1 th:if="">Editer un utilisateur</h1>
+<!--    <h1 th:if="">Ajouter un utilisateur</h1>-->
+<!--    <h1 th:if="">Editer un utilisateur</h1>-->
     <hr>
 
     <form name="monForm" action="" method="post">
         <div id="userForm">
 
             <div class="form-line mb-4">
-                <label class="form-label">Nom complet *</label>
-                <input class="form-control" type="text" name="tata" placeholder="Votre nom" required >
+                <label class="form-label">Marque *</label>
+                <input class="form-control" type="text" name="marque" placeholder="Marque du sac" required  th:value="${ produit.marque}" >
             </div>
 
             <div class="form-line mb-4">
-                <label class="form-label">Email *</label>
-                <input class="form-control" type="text" name="email" placeholder="Votre email" required>
+                <label class="form-label">Model *</label>
+                <input class="form-control" type="text" name="modele" placeholder="Model" required  th:value="${ produit.modele}">
             </div>
 
             <div class="form-line mb-4">
-                <label class="form-label">Nom d'utilisateur *</label>
-                <input class="form-control" type="text" name="username" placeholder="Votre nom d'utilisateur" required th:value="">
+                <label class="form-label">Prix d'achat *</label>
+                <input class="form-control" type="number" name="prixAchat" placeholder="prix d'achat" required th:value="${ produit.prixAchat}">
             </div>
 
             <div class="form-line mb-4">
-                <label class="form-label">Mot de passe *</label>
-                <input class="form-control" type="password" name="password" placeholder="Votre mot de passe"  >
+                <label class="form-label">Prix de vente *</label>
+                <input class="form-control" type="number" name="prixVente" placeholder="Prix de vente " required  th:value="${ produit.prixVente}" >
+            </div>
+
+            <div class="form-line mb-4">
+                <label class="form-label">Quantite en stock *</label>
+                <input class="form-control" type="number" name="quantiteStock" placeholder=" quantite en stock " required th:value="${ produit.quantiteStock}" >
+            </div>
+
+<!--            <div class="form-line mb-4">-->
+<!--                <label class="form-label">Disponblite *</label>-->
+<!--                <input class="form-control" type="text" name="indisponible" placeholder="indisponible " required  th:value="${ produit.indisponible}" >-->
+<!--            </div>-->
+
+            <div class="form-line mb-4">
+                <label class="form-label">Photo du produit *</label>
+                <input class="form-control" type="text" name="photoProduit" placeholder="Photo du produit " required="true"  th:value="${ produit.photoProduit}" >
+            </div>
+
+
+
+
+            <div class="form-line mb-4">
+                <label class="form-label">Disponibilité *</label>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="inlineRadio1" value="1" th:field="${produit.indisponible}">
+                    <label class="form-check-label" for="inlineRadio1">Disponible</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="inlineRadio2" value="0" th:field="${produit.indisponible}">
+                    <label class="form-check-label" for="inlineRadio2">Indisponible</label>
+                </div>
+            </div>
+
+            <div class="form-line mb-4">
+                <label class="form-label">Code Categorie *</label>
+                <div id="cities-content">
+                    <select class="form-select" name="codeCategorie" required id="codeCategorie">
+                        <option value=""> Selectionnez la categorie du produit</option>
+                        <option th:each="categorie : ${categories}" th:value="${categorie.codeCategorie}"
+                                th:utext="${categorie.nom}" th:selected="${ categorie.codeCategorie == produit.codeCategtorie?.codeCategorie }" ></option>
+                    </select>
+                </div>
             </div>
 
         </div>
 
-        <div class="form-line mb-4">
-            <label class="form-label">Rôle *</label>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" id="inlineRadio1" value="ROLE_ADMIN" th:field="">
-                <label class="form-check-label" for="inlineRadio1">Administrateur</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" id="inlineRadio2" value="ROLE_USER" th:field="">
-                <label class="form-check-label" for="inlineRadio2">Simple utilisateur</label>
-            </div>
-        </div>
+
 
         <div class="form-line mb-4">
             <button type="submit" class="btn btn-primary">Envoyer</button>

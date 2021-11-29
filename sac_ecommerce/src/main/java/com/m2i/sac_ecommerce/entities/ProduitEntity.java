@@ -12,14 +12,14 @@ public class ProduitEntity {
     private double prixAchat;
     private double prixVente;
     private int quantiteStock;
-    private byte indisponible;
+    private String indisponible;
     private String photoProduit;
     private CategorieEntity codeCategtorie;
 
     public ProduitEntity() {
     }
 
-    public ProduitEntity(String marque, String modele, double prixAchat, double prixVente, int quantiteStock, byte indisponible, String photoProduit, CategorieEntity codeCategtorie) {
+    public ProduitEntity(String marque, String modele, double prixAchat, double prixVente, int quantiteStock, String indisponible, String photoProduit, CategorieEntity codeCategtorie) {
         this.marque = marque;
         this.modele = modele;
         this.prixAchat = prixAchat;
@@ -92,11 +92,11 @@ public class ProduitEntity {
 
     @Basic
     @Column(name = "indisponible")
-    public byte getIndisponible() {
+    public String getIndisponible() {
         return indisponible;
     }
 
-    public void setIndisponible(byte indisponible) {
+    public void setIndisponible(String indisponible) {
         this.indisponible = indisponible;
     }
 

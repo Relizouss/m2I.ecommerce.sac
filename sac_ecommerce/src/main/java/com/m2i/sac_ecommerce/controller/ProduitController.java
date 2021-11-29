@@ -4,6 +4,7 @@ import com.m2i.sac_ecommerce.apiController.ProduitAPIControler;
 import com.m2i.sac_ecommerce.entities.CategorieEntity;
 import com.m2i.sac_ecommerce.entities.ProduitEntity;
 import com.m2i.sac_ecommerce.entities.UserEntity;
+import com.m2i.sac_ecommerce.service.CategorieService;
 import com.m2i.sac_ecommerce.service.ProduitService;
 import com.m2i.sac_ecommerce.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,8 @@ public class ProduitController {
     @Autowired
     private ProduitService produitService;
 
+    @Autowired
+    public CategorieService  catService;
 
     //param page : numéro de la page actuelle
     // size : nbre d'élements par page
@@ -48,10 +51,13 @@ public class ProduitController {
     }
 
 
+
     // http://localhost:8080/produit/add
     @GetMapping(value = "/add")
     public String add( Model model ){
+        Iterable<CategorieEntity> categories = catService.findAll();
         model.addAttribute("produit" , new ProduitEntity() );
+        model.addAttribute("categories" , categories );
         return "produit/add_edit";
     }
 
@@ -64,14 +70,15 @@ public class ProduitController {
         double prix_Achat = Double.parseDouble(request.getParameter("prixAchat"));
         double prix_Vente = Double.parseDouble(request.getParameter("prixVente"));
         int quantiteStock = Integer.parseInt(request.getParameter("quantiteStock"));
-        byte role = Byte.parseByte(request.getParameter("role"));
+        //String indisponible = request.getParameter("indisponible ");
+        String indisponible = "1";
         String photoProduit = request.getParameter("photoProduit");
         int codeCategorie = Integer.parseInt(request.getParameter("codeCategorie"));
 
         CategorieEntity categorie = new CategorieEntity();
         categorie.setCodeCategorie(codeCategorie);
         // Préparation de l'entité à sauvegarder
-        ProduitEntity produit = new ProduitEntity(marque, modele, prix_Achat, prix_Vente, quantiteStock, role, photoProduit,categorie);
+        ProduitEntity produit = new ProduitEntity(marque, modele, prix_Achat, prix_Vente, quantiteStock,indisponible, photoProduit,categorie);
 
         // Enregistrement en utilisant la couche service qui gère déjà nos contraintes
         try{
@@ -102,7 +109,7 @@ public class ProduitController {
             double prix_Achat = Double.parseDouble(request.getParameter("prixAchat"));
             double prix_Vente = Double.parseDouble(request.getParameter("prixVente"));
             int quantiteStock = Integer.parseInt(request.getParameter("quantiteStock"));
-            byte role = Byte.parseByte(request.getParameter("role"));
+            String indisponible = request.getParameter("indisponible");
             String photoProduit = request.getParameter("photoProduit");
             int codeCategorie = Integer.parseInt(request.getParameter("codeCategorie"));
 
@@ -110,7 +117,7 @@ public class ProduitController {
             categorie.setCodeCategorie(codeCategorie);
 
             // Préparation de l'entité à sauvegarder
-            ProduitEntity produit = new ProduitEntity(marque, modele, prix_Achat, prix_Vente, quantiteStock, role, photoProduit,categorie);
+            ProduitEntity produit = new ProduitEntity(marque, modele, prix_Achat, prix_Vente, quantiteStock, indisponible, photoProduit,categorie);
 
 
             // Enregistrement en utilisant la couche service qui gère déjà nos contraintes
@@ -120,13 +127,14 @@ public class ProduitController {
                 produit.setIdProduit(  -1 ); // hack
                 System.out.println( e.getMessage() );
                 model.addAttribute("produit" , produit );
+                model.addAttribute("codeCategories" , catService.findAll());
                 model.addAttribute("error" , e.getMessage() );
                 return "produit/add_edit";
             }
             return "redirect:/produit?success=true";
         }else{
             try{
-                model.addAttribute("user" , produitService.findProduit(idProduit));
+                model.addAttribute("produit" , produitService.findProduit(idProduit));
             }catch ( NoSuchElementException e ){
                 return "redirect:/produit?error=produit%20introuvalble";
             }

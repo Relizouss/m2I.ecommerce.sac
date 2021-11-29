@@ -1,6 +1,7 @@
 package com.m2i.sac_ecommerce.service;
 
 import com.m2i.sac_ecommerce.entities.CategorieEntity;
+import com.m2i.sac_ecommerce.entities.ProduitEntity;
 import com.m2i.sac_ecommerce.repositories.CategorieRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,8 +16,13 @@ public class CategorieService {
 
     private CategorieRepository catrepository;
 
+
     public CategorieService(CategorieRepository catrepository) {
         this.catrepository = catrepository;
+    }
+
+    public Iterable<CategorieEntity> findAll(  ) {
+        return catrepository.findAll();
     }
 
     public Page<CategorieEntity> findAllByPage(Integer pageNo, Integer pageSize, String search) {
