@@ -76,7 +76,7 @@ import java.util.NoSuchElementException;
 
         @DeleteMapping(value = "/{codeCategorie}")
         public ResponseEntity<Object> delete(@PathVariable int codeCategorie) {
-            // Check sur l'existance de la ville, si ko => 404 not found
+            // Check sur l'existance de la categorie, si ko => 404 not found
             try {
                 CategorieEntity cat = catservice.findCategorie(codeCategorie);
             } catch (Exception e) {

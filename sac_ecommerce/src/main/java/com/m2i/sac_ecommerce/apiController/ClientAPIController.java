@@ -73,7 +73,7 @@ import java.util.NoSuchElementException;
 
         @DeleteMapping(value = "/{idClient}")
         public ResponseEntity<Object> delete(@PathVariable int idClient) {
-            // Check sur l'existance de la ville, si ko => 404 not found
+            // Check sur l'existance du client, si ko => 404 not found
             try {
                 ClientEntity cli = cliservice.findClient(idClient);
             } catch (Exception e) {
