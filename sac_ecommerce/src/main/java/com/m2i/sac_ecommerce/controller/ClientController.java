@@ -65,14 +65,14 @@ public class ClientController {
         String carteNumero= request.getParameter("carteNumero");
 
         // Préparation de l'entité à sauvegarder
-        ClientEntity cat = new ClientEntity(nom, prenom, Date.valueOf(dateNaissance), adresse, ville, codePostal, pays, telephone, email, password, carteNumero);
+        ClientEntity cli = new ClientEntity(nom, prenom, Date.valueOf(dateNaissance), adresse, ville, codePostal, pays, telephone, email, password, carteNumero);
 
         // Enregistrement en utilisant la couche service qui gère déjà nos contraintes
         try{
-            cliservice.addClient( cat );
+            cliservice.addClient( cli );
         }catch( Exception e ){
             System.out.println( e.getMessage() );
-            model.addAttribute("client" , cat );
+            model.addAttribute("client" , cli );
             model.addAttribute("error" , e.getMessage() );
             return "client/add_edit";
         }
@@ -105,15 +105,15 @@ public class ClientController {
             String carteNumero= request.getParameter("carteNumero");
 
             // Préparation de l'entité à sauvegarder
-            ClientEntity cat = new ClientEntity(nom, prenom, Date.valueOf(dateNaissance), adresse, ville, codePostal, pays, telephone, email, password, carteNumero);
+            ClientEntity cli = new ClientEntity(nom, prenom, Date.valueOf(dateNaissance), adresse, ville, codePostal, pays, telephone, email, password, carteNumero);
 
             // Enregistrement en utilisant la couche service qui gère déjà nos contraintes
             try{
-                cliservice.editClient( idClient, cat );
+                cliservice.editClient( idClient, cli );
             }catch( Exception e ){
-                cat.setIdClient(  -1 ); // hack
+                cli.setIdClient(  -1 ); // hack
                 System.out.println( e.getMessage() );
-                model.addAttribute("client" , cat );
+                model.addAttribute("client" , cli );
                 model.addAttribute("error" , e.getMessage() );
                 return "client/add_edit";
             }

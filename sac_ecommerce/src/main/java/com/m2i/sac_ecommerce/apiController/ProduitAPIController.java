@@ -17,13 +17,13 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/api/produit")
-public class ProduitAPIControler {
+public class ProduitAPIController {
 
 
 
     private ProduitService ps;
 
-    public ProduitAPIControler( ProduitService ps ){
+    public ProduitAPIController(ProduitService ps ){
         this.ps = ps;
     }
 

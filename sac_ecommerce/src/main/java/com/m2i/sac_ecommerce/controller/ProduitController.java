@@ -1,12 +1,9 @@
 package com.m2i.sac_ecommerce.controller;
 
-import com.m2i.sac_ecommerce.apiController.ProduitAPIControler;
 import com.m2i.sac_ecommerce.entities.CategorieEntity;
 import com.m2i.sac_ecommerce.entities.ProduitEntity;
-import com.m2i.sac_ecommerce.entities.UserEntity;
 import com.m2i.sac_ecommerce.service.CategorieService;
 import com.m2i.sac_ecommerce.service.ProduitService;
-import com.m2i.sac_ecommerce.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;

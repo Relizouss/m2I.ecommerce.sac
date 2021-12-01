@@ -7,9 +7,9 @@
 
 <main class="container">
 
-    <h1>Liste des Produits</h1>
+    <h1>Liste des Clients</h1>
 
-    <form method="get" action="/produit">
+    <form method="get" action="/clients">
         <div class="row my-4">
             <div class="col-4">
                 <div class="input-group mb-3">
@@ -24,7 +24,7 @@
                 <button type="submit" class="btn btn-primary">Rechercher</button>
             </div>
             <div class="col-4">
-                <a href="/produit/add" class="btn btn-primary">Ajouter un produit</a>
+                <a href="/client/add" class="btn btn-primary">Ajouter un client</a>
             </div>
         </div>
     </form>
@@ -34,32 +34,31 @@
         <thead>
         <tr>
             <th>Id</th>
-            <th>Marque</th>
-            <th>Modele</th>
-            <th>Code Categorie</th>
-            <th>Prix achat</th>
-            <th>Prix vente</th>
-            <th>Quantité stock</th>
-            <th>Indisponible</th>
-            <th>Photo du Produit</th>
+            <th>Nom & Prenom</th>
+            <th>Adresse</th>
+            <th>Ville</th>
+            <th>Code Postal</th>
+            <th>Pays</th>
+            <th>Telephone</th>
+            <th>Email</th>
+            <th>Actions</th>
         </tr>
         </thead>
 
         <tbody>
-        <tr th:each="produit : ${ produits }">
-            <td th:text="${ produit.idProduit}"></td>
-            <td th:text="${ produit.marque}"></td>
-            <td th:text="${ produit.modele}"></td>
-            <td th:text="${ produit.codeCategtorie}"></td>
-            <td th:text="${ produit.prixAchat}"></td>
-            <td th:text="${ produit.prixVente}"></td>
-            <td th:text="${ produit.quantiteStock}"></td>
-            <td th:text="${ produit.indisponible}"></td>
-            <td th:text="${ produit.photoProduit}"></td>
+        <tr th:each="client : ${ clients }">
+            <td th:text="${ client.idClient}"></td>
+            <td th:text="${ client.nom} + ' ' +${client.prenom}"></td>
+            <td th:text="${ client.adresse}"></td>
+            <td th:text="${ client.ville}"></td>
+            <td th:text="${ client.codePostal}"></td>
+            <td th:text="${ client.pays}"></td>
+            <td th:text="${ client.telephone}"></td>
+            <td th:text="${ client.email}"></td>
             <td>
-                <a class="btn btn-secondary btn-sm" th:href="@{'/produit/edit/' + ${ produit.idProduit } }"><i
+                <a class="btn btn-secondary btn-sm" th:href="@{'/client/edit/' + ${ client.idClient } }"><i
                         class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                <button class="btn btn-danger btn-sm" th:onclick="|supprimer( 'produit' , ${produit.idProduit} )|"><i
+                <button class="btn btn-danger btn-sm" th:onclick="|supprimer( 'clientt' , ${client.idClient} )|"><i
                         class="fa fa-trash-o" aria-hidden="true"></i></button>
             </td>
         </tr>

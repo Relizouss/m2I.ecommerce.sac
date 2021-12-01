@@ -18,11 +18,11 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/api/commande")
-public class CommandeAPIControler {
+public class CommandeAPIController {
 
     CommandeService comservice;
 
-    public CommandeAPIControler(CommandeService comservice) {
+    public CommandeAPIController(CommandeService comservice) {
         this.comservice = comservice;
     }
 

@@ -1,6 +1,7 @@
 package com.m2i.sac_ecommerce.repositories;
 
 import com.m2i.sac_ecommerce.entities.ClientEntity;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;

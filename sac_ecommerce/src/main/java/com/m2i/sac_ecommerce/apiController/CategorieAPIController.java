@@ -2,13 +2,13 @@ package com.m2i.sac_ecommerce.apiController;
 
 import com.m2i.sac_ecommerce.entities.CategorieEntity;
 import com.m2i.sac_ecommerce.service.CategorieService;
-import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
+import org.hibernate.exception.ConstraintViolationException;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.InvalidObjectException;

@@ -4,7 +4,7 @@ function supprimer( resource , id ) {
     }
 }
 
-function load(){
+/*function load(){
     let paysSelected = document.getElementById('pays').value;
 
     fetch( "villeajax?pays="+paysSelected ) // si on ne spécifie rien, l'appel fait est un GET
@@ -15,7 +15,7 @@ function load(){
             document.getElementById('ville').innerHTML = data;
         })
         .catch(error => alert("Erreur : " + error));
-}
+}*/
 
 setTimeout(function(){
     if( document.getElementById("errMessage") != null )
