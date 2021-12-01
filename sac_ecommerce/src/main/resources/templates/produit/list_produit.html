@@ -7,75 +7,104 @@
 
 <main class="container">
 
-    <h1>Liste des Produits</h1>
+    <h1>D.O.B Sac</h1>
 
-    <form method="get" action="/produit">
-        <div class="row my-4">
-            <div class="col-4">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" th:value="${search}" name="search" placeholder="Rechercher"
-                           aria-describedby="button-addon2">
-                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="fa fa-search"
-                                                                                                  aria-hidden="true"></i>
-                    </button>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="produit" data-bs-toggle="tab" data-bs-target="#home" type="button"
+                    role="tab" aria-controls="home" aria-selected="true">Produits
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
+                    role="tab" aria-controls="profile" aria-selected="false">Administrateur
+            </button>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="produit">
+            <div class="row justify-content-center">
+                <div class="card col-sm-6 text-right m-2" style="width: 18rem;" th:each="produit : ${ produits }">
+                    <img class="card-img-top" alt="..." th:src="${ produit.photoProduit}">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${ produit.modele}"></h5>
+                        <p class="card-text" th:text="${ produit.prixVente} + ' €' "></p>
+                        <a href="#" class="btn btn-primary">Ajouter au panier</a>
+                    </div>
                 </div>
             </div>
-            <div class="col-4">
-                <button type="submit"  class="btn btn-primary">Rechercher</button>
-            </div>
-            <div class="col-4" sec:authorize="hasRole('ROLE_ADMIN')">
-                <a href="/produit/add" class="btn btn-primary">Ajouter un produit</a>
-            </div>
         </div>
-    </form>
+        <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
+            <form method="get" action="/produit">
+                <div class="row my-4">
+                    <div class="col-4">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" th:value="${search}" name="search"
+                                   placeholder="Rechercher"
+                                   aria-describedby="button-addon2">
+                            <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i
+                                    class="fa fa-search"
+                                    aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary">Rechercher</button>
+                    </div>
+                    <div class="col-4" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a href="/produit/add" class="btn btn-primary">Ajouter un produit</a>
+                    </div>
+                </div>
+            </form>
 
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Marque</th>
-            <th>Modele</th>
-            <th>Code Categorie</th>
-            <th>Prix achat</th>
-            <th>Prix vente</th>
-            <th>Quantité stock</th>
-            <th>Indisponible</th>
-            <th>Photo du Produit</th>
-        </tr>
-        </thead>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Marque</th>
+                    <th>Modele</th>
+                    <th>Code Categorie</th>
+                    <th>Prix achat</th>
+                    <th>Prix vente</th>
+                    <th>Quantité stock</th>
+                    <th>Indisponible</th>
+                    <th>Photo du Produit</th>
+                </tr>
+                </thead>
 
-        <tbody>
-        <tr th:each="produit : ${ produits }">
-            <td th:text="${ produit.idProduit}"></td>
-            <td th:text="${ produit.marque}"></td>
-            <td th:text="${ produit.modele}"></td>
-            <td th:text="${ produit.codeCategtorie.nom}"></td>
-            <td th:text="${ produit.prixAchat}"></td>
-            <td th:text="${ produit.prixVente}"></td>
-            <td th:text="${ produit.quantiteStock}"></td>
-            <td th:text="${ produit.indisponible}"></td>
-            <td th:text="${ produit.photoProduit}"></td>
-            <td>
-                <a class="btn btn-secondary btn-sm" th:href="@{'/produit/edit/' + ${ produit.idProduit } }"><i
-                        class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                <button class="btn btn-danger btn-sm" th:onclick="|supprimer( 'produit' , ${produit.idProduit} )|"><i
-                        class="fa fa-trash-o" aria-hidden="true"></i></button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-
-    <div class="row justify-content-center">
-        <div class="card col-sm-6 text-right m-2" style="width: 18rem;" th:each="produit : ${ produits }">
-            <img class="card-img-top" alt="..." th:src="${ produit.photoProduit}">
-            <div class="card-body">
-                <h5 class="card-title" th:text="${ produit.modele}"></h5>
-                <p class="card-text" th:text="${ produit.prixVente} + ' €' "></p>
-                <a href="#" class="btn btn-primary">Ajouter au panier</a>
-            </div>
+                <tbody>
+                <tr th:each="produit : ${ produits }">
+                    <td th:text="${ produit.idProduit}"></td>
+                    <td th:text="${ produit.marque}"></td>
+                    <td th:text="${ produit.modele}"></td>
+                    <td th:text="${ produit.codeCategtorie.nom}"></td>
+                    <td th:text="${ produit.prixAchat}"></td>
+                    <td th:text="${ produit.prixVente}"></td>
+                    <td th:text="${ produit.quantiteStock}"></td>
+                    <td th:text="${ produit.indisponible}"></td>
+                    <td th:text="${ produit.photoProduit}"></td>
+                    <td>
+                        <a class="btn btn-secondary btn-sm" th:href="@{'/produit/edit/' + ${ produit.idProduit } }"><i
+                                class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                        <button class="btn btn-danger btn-sm"
+                                th:onclick="|supprimer( 'produit' , ${produit.idProduit} )|"><i
+                                class="fa fa-trash-o" aria-hidden="true"></i></button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
+
+
+    <script>
+        var firstTabEl = document.querySelector('#myTab li:last-child a')
+        var firstTab = new bootstrap.Tab(firstTabEl)
+
+        firstTab.show()
+    </script>
 
 </main>
 
