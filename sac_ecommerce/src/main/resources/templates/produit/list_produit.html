@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org" lang="fr">
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="fr">
 <head class="mb-5" th:include="~{ fragments/head::#head }"></head>
 <body>
 
@@ -21,9 +21,9 @@
                 </div>
             </div>
             <div class="col-4">
-                <button type="submit" class="btn btn-primary">Rechercher</button>
+                <button type="submit"  class="btn btn-primary">Rechercher</button>
             </div>
-            <div class="col-4">
+            <div class="col-4" sec:authorize="hasRole('ROLE_ADMIN')">
                 <a href="/produit/add" class="btn btn-primary">Ajouter un produit</a>
             </div>
         </div>
@@ -50,7 +50,7 @@
             <td th:text="${ produit.idProduit}"></td>
             <td th:text="${ produit.marque}"></td>
             <td th:text="${ produit.modele}"></td>
-            <td th:text="${ produit.codeCategtorie.codeCategorie}"></td>
+            <td th:text="${ produit.codeCategtorie.nom}"></td>
             <td th:text="${ produit.prixAchat}"></td>
             <td th:text="${ produit.prixVente}"></td>
             <td th:text="${ produit.quantiteStock}"></td>
@@ -65,6 +65,18 @@
         </tr>
         </tbody>
     </table>
+
+    <div class="row justify-content-center">
+        <div class="card col-sm-6 text-right m-2" style="width: 18rem;" th:each="produit : ${ produits }">
+            <img class="card-img-top" alt="..." th:src="${ produit.photoProduit}">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${ produit.modele}"></h5>
+                <p class="card-text" th:text="${ produit.prixVente} + ' €' "></p>
+                <a href="#" class="btn btn-primary">Ajouter au panier</a>
+            </div>
+        </div>
+    </div>
+
 </main>
 
 <footer th:include="~{ fragments/footer::#footer }"></footer>

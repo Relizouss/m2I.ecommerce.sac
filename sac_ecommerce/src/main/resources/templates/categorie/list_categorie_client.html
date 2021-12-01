@@ -9,25 +9,6 @@
 
     <h1>Liste des Collections</h1>
 
-    <form method="get" action="/categorie">
-        <div class="row my-4">
-            <div class="col-4">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" name="search" placeholder="Rechercher" th:value="${search}"
-                           aria-describedby="button-addon2">
-                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="fa fa-search"
-                                                                                                  aria-hidden="true"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="col-4">
-                <button type="submit" class="btn btn-primary">Rechercher</button>
-            </div>
-            <div class="col-4">
-                <a href="/categorie/add" class="btn btn-primary">Ajouter une Collection</a>
-            </div>
-        </div>
-    </form>
 
     <span class="badge bg-secondary" th:text="| ${ #lists.size(categories) } categorie(s) trouvée(s) |"></span>
 
