@@ -9,36 +9,39 @@
 
     <h1>Liste des utilisateurs</h1>
 
-    <a href="/user/add" class="btn btn-primary">Ajouter un utilisateur</a>
+    <form method="get" action="/user">
 
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Nom complet</th>
-            <th>Identifiant</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
+        <a href="/add" class="btn btn-primary">Ajouter un utilisateur</a>
 
-        <tbody>
-        <tr th:each="user : ${ users }">
-            <td th:text="${ user.idUser }"></td>
-            <td th:text="${ user.nom }"></td>
-            <td th:text="${ user.identifiant }"></td>
-            <td th:text="${ user.email }"></td>
-            <td th:text="${ user.role == 'ROLE_ADMIN' } ? 'Administrateur' : 'Utilisateur'"></td>
-            <td>
-                <a class="btn btn-secondary btn-sm" th:href="@{'/user/edit/' + ${ user.idUser } }"><i
-                        class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                <button class="btn btn-danger btn-sm" th:onclick="|supprimer( 'user' , ${user.idUser} )|"><i
-                        class="fa fa-trash-o" aria-hidden="true"></i></button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom complet</th>
+                <th>Identifiant</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="user : ${ users }">
+                <td th:text="${ user.idUser }"></td>
+                <td th:text="${ user.nom }"></td>
+                <td th:text="${ user.identifiant }"></td>
+                <td th:text="${ user.email }"></td>
+                <td th:text="${ user.role == 'ROLE_ADMIN' } ? 'Administrateur' : 'Utilisateur'"></td>
+                <td>
+                    <a class="btn btn-secondary btn-sm" th:href="@{'/user/edit/'+${user.getIdUser()}}"><i
+                            class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a class="btn btn-danger btn-sm" th:href="@{'/user/delete/'+${user.getIdUser()}}"><i
+                            class="fa fa-trash-o" aria-hidden="true"></i></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
 </main>
 
 <footer th:include="~{ fragments/footer::#footer }"></footer>

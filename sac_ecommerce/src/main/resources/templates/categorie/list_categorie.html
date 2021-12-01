@@ -7,29 +7,24 @@
 
 <main class="container">
 
-    <h1>Liste des Collections</h1>
+    <h1>Liste des categories</h1>
 
     <form method="get" action="/categorie">
         <div class="row my-4">
             <div class="col-4">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" name="search" placeholder="Rechercher" th:value="${search}"
-                           aria-describedby="button-addon2">
-                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="fa fa-search"
-                                                                                                  aria-hidden="true"></i>
-                    </button>
+                    <input type="text" class="form-control" th:value="${search}" name="search" placeholder="Rechercher" aria-describedby="button-addon2">
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="fa fa-search" aria-hidden="true"></i></button>
                 </div>
             </div>
             <div class="col-4">
                 <button type="submit" class="btn btn-primary">Rechercher</button>
             </div>
             <div class="col-4">
-                <a href="/categorie/add" class="btn btn-primary">Ajouter une Collection</a>
+                <a href="/categorie/add" class="btn btn-primary">Ajouter une categorie</a>
             </div>
         </div>
     </form>
-
-    <span class="badge bg-secondary" th:text="| ${ #lists.size(categories) } categorie(s) trouvée(s) |"></span>
 
     <table class="table table-striped">
         <thead>
@@ -37,6 +32,7 @@
             <th>Code Categorie</th>
             <th>Nom</th>
             <th>Description</th>
+            <th>Actions</th>
         </tr>
         </thead>
 
@@ -44,25 +40,18 @@
         <tr th:each="categorie : ${ categories }">
             <td th:text="${ categorie.codeCategorie }"></td>
             <td th:text="${ categorie.nom }"></td>
-            <td th:text="${ categorie.description }"></td>
+            <td th:text="${ categorie.description}"></td>
+
             <td>
                 <a class="btn btn-secondary btn-sm" th:href="@{'/categorie/edit/' + ${ categorie.codeCategorie } }"><i
                         class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                <button class="btn btn-danger btn-sm" th:onclick="|supprimer( 'categorie' , ${categorie.codeCategorie} )|">
-                    <i class="fa fa-trash-o"
-                       aria-hidden="true"></i>
-                </button>
+
+                <a class="btn btn-danger btn-sm" th:href="@{'/categorie/delete/' + ${ categorie.codeCategorie } }"><i
+                        class="fa fa-trash-o" aria-hidden="true"></i></a>
             </td>
         </tr>
         </tbody>
     </table>
-
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-        </ul>
-    </nav>
-
 </main>
 
 <footer th:include="~{ fragments/footer::#footer }"></footer>
