@@ -121,9 +121,9 @@ public class CategorieController {
         }
         return "redirect:/categorie"+message;
     }
-
-    public void setCatservice(CategorieService catservice) {
-        this.catservice = catservice;
-    }
+//
+//    //public void setCatservice(CategorieService catservice) {
+//        this.catservice = catservice;
+//    }
 }
 

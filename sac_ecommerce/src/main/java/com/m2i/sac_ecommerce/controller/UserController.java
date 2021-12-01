@@ -133,6 +133,7 @@ public class UserController {
         String message = "?success=true";
         try{
             userService.delete(idUser);
+            System.out.println(" on est dans delete ");
         }catch ( Exception e ){
             message = "?error=user%20introuvalble";
         }

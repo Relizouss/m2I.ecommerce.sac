@@ -66,7 +66,7 @@ public class ClientController {
 
         // Préparation de l'entité à sauvegarder
         ClientEntity cli = new ClientEntity(nom, prenom, Date.valueOf(dateNaissance), adresse, ville, codePostal, pays, telephone, email, password, carteNumero);
-
+        System.out.println(cli);
         // Enregistrement en utilisant la couche service qui gère déjà nos contraintes
         try{
             cliservice.addClient( cli );
