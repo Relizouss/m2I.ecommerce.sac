@@ -46,7 +46,7 @@
                 <a class="btn btn-secondary btn-sm" th:href="@{'/categorie/edit/' + ${ categorie.codeCategorie } }"><i
                         class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 
-                <a class="btn btn-danger btn-sm" th:href="@{'/categorie/delete/' + ${ categorie.codeCategorie } }"><i
+                <a class="btn btn-danger btn-sm" th:onclick="|supprimer( 'categorie' , ${categorie.codeCategorie} )|"><i
                         class="fa fa-trash-o" aria-hidden="true"></i></a>
             </td>
         </tr>
