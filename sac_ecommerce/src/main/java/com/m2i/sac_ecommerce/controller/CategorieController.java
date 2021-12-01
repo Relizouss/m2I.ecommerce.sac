@@ -117,9 +117,9 @@ public class CategorieController {
         try{
             catservice.delete(codeCategorie);
         }catch ( Exception e ){
-            message = "?error=Ville%20introuvalble";
+            message = "?error=categorie%20introuvalble";
         }
-        return "redirect:/ville"+message;
+        return "redirect:/categorie"+message;
     }
 
     public void setCatservice(CategorieService catservice) {

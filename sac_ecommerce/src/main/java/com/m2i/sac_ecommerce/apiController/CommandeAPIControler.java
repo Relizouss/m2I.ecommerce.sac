@@ -22,7 +22,9 @@ public class CommandeAPIControler {
 
     CommandeService comservice;
 
-
+    public CommandeAPIControler(CommandeService comservice) {
+        this.comservice = comservice;
+    }
 
     @GetMapping(value = "", produces = "application/json")
     public Iterable<CommandeEntity> getAll(HttpServletRequest request) {

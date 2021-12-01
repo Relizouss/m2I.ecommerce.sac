@@ -67,8 +67,11 @@
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 3daa295 (Initialisation Api, Controller, Service, Repositories, Entities)
 	</dependencies>
 
 	<build>
