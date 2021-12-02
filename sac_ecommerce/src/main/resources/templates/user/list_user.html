@@ -9,9 +9,9 @@
 
     <h1>Liste des utilisateurs</h1>
 
-    <form method="get" action="/user">
 
-        <a href="/add" class="btn btn-primary">Ajouter un utilisateur</a>
+
+        <a href="/user/add" class="btn btn-primary">Ajouter un utilisateur</a>
 
         <table class="table table-striped">
             <thead>
@@ -33,18 +33,25 @@
                 <td th:text="${ user.email }"></td>
                 <td th:text="${ user.role == 'ROLE_ADMIN' } ? 'Administrateur' : 'Utilisateur'"></td>
                 <td>
-                    <a class="btn btn-secondary btn-sm" th:href="@{'/user/edit/'+${user.getIdUser()}}"><i
+                    <a class="btn btn-secondary btn-sm" th:href="@{'/user/edit/'+${user.idUser}}"><i
                             class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                    <a class="btn btn-danger btn-sm" th:href="@{'/user/delete/'+${user.getIdUser()}}"><i
-                            class="fa fa-trash-o" aria-hidden="true"></i></a>
+                    <button class="btn btn-danger btn-sm" th:onclick="|supprimer( 'user' , ${user.getIdUser()} )|"><i
+                            class="fa fa-trash-o" aria-hidden="true"></i></button>
                 </td>
             </tr>
             </tbody>
         </table>
-    </form>
+
 </main>
 
-<footer th:include="~{ fragments/footer::#footer }"></footer>
+<script type="text/javascript">
+    function supprimer( resource , id ) {
+        if (confirm("Êtes vous sûr ?")) {
+            window.location = '/'+resource+'/delete/' + id;
+        }
+    }
+</script>
+<footer th:include="~{ fragments/footer }"></footer>
 
 </body>
 </html>

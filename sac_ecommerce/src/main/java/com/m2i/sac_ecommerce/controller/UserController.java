@@ -88,7 +88,7 @@ public class UserController {
 
 
 
-    @RequestMapping( method = { RequestMethod.GET , RequestMethod.POST} , value = "/edit/{id}" )
+    @RequestMapping( method = { RequestMethod.GET , RequestMethod.POST} , value = "/edit/{idUser}" )
     public String editGetPost(Model model , @PathVariable int idUser, HttpServletRequest request ){
         System.out.println( "Add Edit User" + request.getMethod() );
 
@@ -119,6 +119,7 @@ public class UserController {
             return "redirect:/user?success=true";
         }else{
             try{
+
                 model.addAttribute("user" , userService.findUser(idUser));
             }catch ( NoSuchElementException e ){
                 return "redirect:/user?error=user%20introuvalble";
@@ -128,7 +129,7 @@ public class UserController {
         }
     }
 
-    @GetMapping(value = "/delete/{id}")
+    @GetMapping(value = "/delete/{idUser}")
     public String delete( @PathVariable int idUser ){
         String message = "?success=true";
         try{

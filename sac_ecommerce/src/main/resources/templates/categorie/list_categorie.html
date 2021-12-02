@@ -7,86 +7,54 @@
 
 <main class="container">
 
+    <h1>Liste des categories</h1>
 
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="produit" data-bs-toggle="tab" data-bs-target="#home" type="button"
-                    role="tab" aria-controls="home" aria-selected="true">Produits
-            </button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
-                    role="tab" aria-controls="profile" aria-selected="false">Administrateur
-            </button>
-        </li>
-    </ul>
-
-    <div class="tab-content">
-        <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="produit">
-            <div class="row justify-content-center">
-                <div class="card text-right m-2 mt-3 col-sm-6" th:each="categorie : ${ categories }" style="width: 18rem;">
-                    <img src="..." class="card-img-top" th:alt-title="${ categorie.nom }">
-                    <div class="card-body">
-                        <h2 th:text="${ categorie.description}"></h2>
-                    </div>
+    <form method="get" action="/categorie">
+        <div class="row my-4">
+            <div class="col-4">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" th:value="${search}" name="search" placeholder="Rechercher" aria-describedby="button-addon2">
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="fa fa-search" aria-hidden="true"></i></button>
                 </div>
             </div>
+            <div class="col-4">
+                <button type="submit" class="btn btn-primary">Rechercher</button>
+            </div>
+            <div class="col-4">
+                <a href="/categorie/add" class="btn btn-primary">Ajouter une categorie</a>
+            </div>
         </div>
+    </form>
 
-        <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Code Categorie</th>
+            <th>Nom</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
 
-            <h1>Liste des categories</h1>
+        <tbody>
+        <tr th:each="categorie : ${ categories }">
+            <td th:text="${ categorie.codeCategorie }"></td>
+            <td th:text="${ categorie.nom }"></td>
+            <td th:text="${ categorie.description}"></td>
 
-            <form method="get" action="/categorie">
-                <div class="row my-4">
-                    <div class="col-4">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" th:value="${search}" name="search" placeholder="Rechercher"
-                                   aria-describedby="button-addon2">
-                            <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="fa fa-search"
-                                                                                                          aria-hidden="true"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <button type="submit" class="btn btn-primary">Rechercher</button>
-                    </div>
-                    <div class="col-4">
-                        <a href="/categorie/add" class="btn btn-primary">Ajouter une categorie</a>
-                    </div>
-                </div>
-            </form>
+            <td>
+                <a class="btn btn-secondary btn-sm" th:href="@{'/categorie/edit/' + ${ categorie.codeCategorie } }"><i
+                        class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>Code Categorie</th>
-                    <th>Nom</th>
-                    <th>Description</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-
-                <tbody>
-                <tr th:each="categorie : ${ categories }">
-                    <td th:text="${ categorie.codeCategorie }"></td>
-                    <td th:text="${ categorie.nom }"></td>
-                    <td th:text="${ categorie.description}"></td>
-                    <td>
-                        <a class="btn btn-secondary btn-sm" th:href="@{'/categorie/edit/' + ${ categorie.codeCategorie } }"><i
-                                class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-
-                        <a class="btn btn-danger btn-sm" th:onclick="|supprimer( 'categorie' , ${categorie.codeCategorie} )|"><i
-                                class="fa fa-trash-o" aria-hidden="true"></i></a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
-        </div>
-    </div>
-
+                <a class="btn btn-danger btn-sm"  th:onclick="|supprimer( 'categorie' , ${categorie.codeCategorie} )|"><i
+                        class="fa fa-trash-o" aria-hidden="true"></i></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </main>
+
+
 
 <footer th:include="~{ fragments/footer::#footer }"></footer>
 
