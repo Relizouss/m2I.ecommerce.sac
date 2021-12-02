@@ -1,5 +1,7 @@
 package com.m2i.sac_ecommerce.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Objects;

@@ -135,12 +135,12 @@ public class ClientController {
         try{
             cliservice.delete(idClient);
         }catch ( Exception e ){
-            message = "?error=Ville%20introuvalble";
+            message = "?error=Client%20introuvalble";
         }
-        return "redirect:/ville"+message;
+        return "redirect:/client"+message;
     }
 
-    public void setcliservice(ClientService cliservice) {
+    public void setCliservice(ClientService cliservice) {
         this.cliservice = cliservice;
     }
 }

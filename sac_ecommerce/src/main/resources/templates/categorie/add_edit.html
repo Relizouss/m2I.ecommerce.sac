@@ -15,15 +15,9 @@
     <form name="monForm" action="" method="post">
         <div class="form-line mb-4">
             <label class="form-label">Nom *</label>
-            <input class="form-control" minlength="2" type="text" name="nom" placeholder="Nom de la Collection" required
-                   th:value="${categorie.nom}">
+            <input class="form-control" minlength="2" type="text" name="nom" placeholder="Nom de la Collection" required th:value="${categorie.nom}">
         </div>
-        <div class="form-line mb-4">
-            <label>Code postal *</label>
-            <input class="form-control" type="text" name="description" placeholder="description" required
-                   th:value="${categorie.description}">
-            <input class="form-control" minlength="2" type="text" name="nom" placeholder="Nom de la categorie" required th:value="${categorie.nom}">
-        </div>
+
         <div class="form-line mb-4">
             <label>Description *</label>
             <input class="form-control" type="text" name="description" placeholder="Description" required th:value="${categorie.description}">
