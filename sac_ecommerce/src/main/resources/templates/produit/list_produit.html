@@ -25,11 +25,13 @@
     <div class="tab-content">
         <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="produit">
             <div class="row justify-content-center">
-                <div class="card col-sm-6 text-right m-2" style="width: 18rem;" th:each="produit : ${ produits }">
+                <div class="card col-sm-6 text-right m-2 mt-3" style="width: 18rem;" th:each="produit : ${ produits }">
                     <img class="card-img-top" alt="..." th:src="${ produit.photoProduit}">
                     <div class="card-body">
-                        <h5 class="card-title" th:text="${ produit.modele}"></h5>
-                        <p class="card-text" th:text="${ produit.prixVente} + ' €' "></p>
+                        <a th:href="@{'/produit/view_produit/' + ${ produit.idProduit } }"><h5 class="card-title"
+                                                                                               th:text="${ produit.modele}"></h5>
+                        </a>
+                        <p class="card-text" th:text="${ produit.prixVente} + ' €' "> </p>
                         <a href="#" class="btn btn-primary">Ajouter au panier</a>
                     </div>
                 </div>
