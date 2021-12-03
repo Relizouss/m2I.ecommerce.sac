@@ -1,56 +1,69 @@
-<header class="mb-5" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-        id="header">
+<header class="mb-5" id="header" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+        xmlns:th="https://www.thymeleaf.org">
 
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-lg">
+        <div class="container-fluid">
+            <i class="fas fa-shopping-bag"></i>
+            <a class="navbar-brand" href="/accueil">DOB Luxury</a>
+            <button aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation"
+                    class="navbar-toggler"
+                    data-bs-target="#navbarColor01" data-bs-toggle="collapse" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse container mx-2" id="navbarColor01">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a aria-current="page" class="nav-link active mx-2" href="/accueil">Accueil</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a aria-expanded="false" class="nav-link dropdown-toggle mx-2" data-bs-toggle="dropdown" href="#"
+                           role="button">Collection</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Summer</a></li>
+                            <li><a class="dropdown-item" href="#">Daily</a></li>
+                            <li><a class="dropdown-item" href="#">Winter</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item mx-2" href="/produit">Tous nos sacs</a></li>
+                            <li><a class="dropdown-item mx-2" href="/categorie">Toutes les collections</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="#">A propos</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="/checkout">Paiement</a>
+                    </li>
+                    <li class="nav-item d-flex mx-2">
+                        <a class="nav-link" href="/client">Espace Client</a>
+                    </li>
+                    <li class="nav-item d-flex mx-2" sec:authorize="">
+                        <a class="nav-link" href="/user">Utilisateurs</a>
+                    </li>
 
-    <div class="container text-dark ">
-        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-                <i class="fas fa-shopping-bag"></i>
-                <span class="fs-4">DOB Shop</span>
-            </a>
-
-            <ul class="nav nav-pills">
-                <li class=""><a class="nav-link active " aria-current="page" href="/">Accueil</a></li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link text-dark dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                       aria-expanded="false">Collection</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Summer</a></li>
-                        <li><a class="dropdown-item" href="#">Daily</a></li>
-                        <li><a class="dropdown-item" href="#">Winter</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="/produit">Tous nos sacs</a></li>
-                        <li><a class="dropdown-item" href="/categorie">Toutes les collections</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item"><a class="nav-link text-dark" href="/produit">Nous contacter</a></li>
-                <li class="nav-item"><a class="nav-link text-dark" href="/produit">A propos</a></li>
-                <li class="nav-item"><a class="nav-link text-dark" href="/client">Clients</a></li>
-                <li class="nav-item" sec:authorize=""><a class="nav-link text-dark" href="/user">Utilisateurs</a></li>
-                <div class="dropdown">
-                    <button class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                        <img src="/images/logo.png" class="img-circle">
+                </ul>
+                <div class="dropdown d-flex">
+                    <button aria-expanded="false" class="dropdown-toggle" data-bs-toggle="dropdown"
+                            id="dropdownMenuButton1"
+                            type="button">
+                        <img class="img-circle" src="/images/profil.jpg">
                     </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Profil</a>
+                    <ul aria-labelledby="dropdownMenuButton1" class="dropdown-menu">
+                        <li><a class="dropdown-item" data-bs-target="#staticBackdrop" data-bs-toggle="modal" href="#">Profil</a>
                         </li>
                         <li><a class="dropdown-item" href="/logout">Logout</a></li>
                     </ul>
                 </div>
-            </ul>
-        </header>
+            </div>
+        </div>
+    </nav>
 
 
+    <div class="alert alert-danger" id="errMessage" role="alert" th:if="${param.error}" th:text="${param.error}">
     </div>
 
-
-    <div class="alert alert-danger" role="alert" th:if="${param.error}" th:text="${param.error}" id="errMessage">
-    </div>
-
-    <div class="alert alert-success" role="alert" th:if="${param.success}" id="succMessage">
+    <div class="alert alert-success" id="succMessage" role="alert" th:if="${param.success}">
         Opération effectuée avec succès
     </div>
 

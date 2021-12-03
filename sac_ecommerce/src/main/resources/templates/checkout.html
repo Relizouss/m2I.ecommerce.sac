@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="https://www.thymeleaf.org">
+<head class="mb-5" th:include="~{ fragments/head::#head }"></head>
+<body class="bg-light">
+<header class="mb-5" th:include="~{ fragments/header::#header }"></header>
+
+<style>
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+    }
+
+    @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+        }
+    }
+</style>
+
+
+<!-- Custom styles for this template -->
+
+
+<div class="container">
+    <main>
+        <div class="py-5 text-center">
+            <h2>Paiement</h2>
+            <p class="lead">Veuillez remplir ci-dessous toutes les informations pour procéder au paiement.</p>
+        </div>
+
+        <div class="row g-5">
+            <div class="col-md-5 col-lg-4 order-md-last">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-primary">Votre panier</span>
+                    <span class="badge bg-primary rounded-pill">3</span>
+                </h4>
+                <ul class="list-group mb-3">
+                    <li class="list-group-item d-flex justify-content-between lh-sm">
+                        <div>
+                            <h6 class="my-0">Product name</h6>
+                            <small class="text-muted">Brief description</small>
+                        </div>
+                        <span class="text-muted">$12</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between lh-sm">
+                        <div>
+                            <h6 class="my-0">Second product</h6>
+                            <small class="text-muted">Brief description</small>
+                        </div>
+                        <span class="text-muted">$8</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between lh-sm">
+                        <div>
+                            <h6 class="my-0">Third item</h6>
+                            <small class="text-muted">Brief description</small>
+                        </div>
+                        <span class="text-muted">$5</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Total (EUR)</span>
+                        <strong>20 €</strong>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="col-md-7 col-lg-8">
+                <h4 class="mb-3">Adresse de facturation</h4>
+                <form class="needs-validation" novalidate>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <label class="form-label" for="firstName">Prénom</label>
+                            <input class="form-control" id="firstName" placeholder="" required type="text" value="">
+                            <div class="invalid-feedback">
+                                Un prénom valide est requis
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label class="form-label" for="lastName">Nom</label>
+                            <input class="form-control" id="lastName" placeholder="" required type="text" value="">
+                            <div class="invalid-feedback">
+                                Un nom valide est requis
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label" for="username">Pseudo</label>
+                            <div class="input-group has-validation">
+                                <span class="input-group-text">@</span>
+                                <input class="form-control" id="username" placeholder="Username" required type="text">
+                                <div class="invalid-feedback">
+                                    Un pseudo valide est requis
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label" for="email">Email <span
+                                    class="text-muted">(Facultatif)</span></label>
+                            <input class="form-control" id="email" placeholder="you@example.com" type="email">
+                            <div class="invalid-feedback">
+                                Merci d'entrer une adresse mail valide pour le suivi de la livraison.
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label" for="address">Adresse</label>
+                            <input class="form-control" id="address" placeholder="Adresse postal" required type="text">
+                            <div class="invalid-feedback">
+                                Merci d'entrer une adresse de livraison
+                            </div>
+                        </div>
+
+                        <div class="col-md-5">
+                            <label class="form-label" for="country">Pays</label>
+                            <select class="form-select" id="country" required>
+                                <option value="">selectionner</option>
+                                <option>United States</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Selectionnez un pays.
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label" for="state">Ville</label>
+                            <select class="form-select" id="state" required>
+                                <option value="">selectionner une ville</option>
+                                <option>Marseille</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Selectionnez une ville.
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label" for="zip">Code postal</label>
+                            <input class="form-control" id="zip" placeholder="" required type="text">
+                            <div class="invalid-feedback">
+                                Code postal requis
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <div class="form-check">
+                        <input class="form-check-input" id="same-address" type="checkbox">
+                        <label class="form-check-label" for="same-address">L'adresse de livraison est la même que
+                            l'adresse de facturation</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" id="save-info" type="checkbox">
+                        <label class="form-check-label" for="save-info">Enregistrer mes informations pour les prochaines
+                            commandes</label>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <h4 class="mb-3">Paiement</h4>
+
+                    <div class="my-3">
+                        <div class="form-check">
+                            <input checked class="form-check-input" id="credit" name="paymentMethod" required
+                                   type="radio">
+                            <label class="form-check-label" for="credit">Credit card</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" id="debit" name="paymentMethod" required type="radio">
+                            <label class="form-check-label" for="debit">Visa card</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" id="paypal" name="paymentMethod" required type="radio">
+                            <label class="form-check-label" for="paypal">PayPal</label>
+                        </div>
+                    </div>
+
+                    <div class="row gy-3">
+                        <div class="col-md-6">
+                            <label class="form-label" for="cc-name">Nom de la carte</label>
+                            <input class="form-control" id="cc-name" placeholder="" required type="text">
+                            <small class="text-muted">Le nom entier figurant sur la carte</small>
+                            <div class="invalid-feedback">
+                                Nom sur la carte est requis
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label" for="cc-number">Numéro de carte</label>
+                            <input class="form-control" id="cc-number" placeholder="" required type="text">
+                            <div class="invalid-feedback">
+                                Numéro de carte manquant
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label" for="cc-expiration">Expiration</label>
+                            <input class="form-control" id="cc-expiration" placeholder="" required type="text">
+                            <div class="invalid-feedback">
+                                Numéro d'expiration manquant
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label" for="cc-cvv">CVV</label>
+                            <input class="form-control" id="cc-cvv" placeholder="" required type="text">
+                            <div class="invalid-feedback">
+                                Security code required
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <button class="w-100 btn btn-primary btn-lg mb-5" type="submit">Valider le paiement </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer th:include="~{ fragments/footer::#footer }"></footer>
+
+</div>
+
+
+</body>
+</html>

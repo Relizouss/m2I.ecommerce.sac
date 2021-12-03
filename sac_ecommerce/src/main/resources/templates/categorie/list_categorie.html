@@ -25,7 +25,7 @@
         <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="produit">
             <div class="row justify-content-center">
                 <div class="card text-right m-2 mt-3 col-sm-6" th:each="categorie : ${ categories }" style="width: 18rem;">
-                    <img src="..." class="card-img-top" th:alt-title="${ categorie.nom }">
+                    <img src="th:sr." class="card-img-top" th:alt-title="${ categorie.nom }">
                     <div class="card-body">
                         <h2 th:text="${ categorie.description}"></h2>
                     </div>
@@ -49,10 +49,10 @@
                         </div>
                     </div>
                     <div class="col-4">
-                        <button type="submit" class="btn btn-primary">Rechercher</button>
+                        <button type="submit" class="btn btn-dark">Rechercher</button>
                     </div>
                     <div class="col-4">
-                        <a href="/categorie/add" class="btn btn-primary">Ajouter une categorie</a>
+                        <a href="/categorie/add" class="btn btn-dark">Ajouter une categorie</a>
                     </div>
                 </div>
             </form>

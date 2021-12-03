@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org" lang="fr">
+<html lang="fr" xmlns:th="https://www.thymeleaf.org">
 <head class="mb-5" th:include="~{ fragments/head::#head }"></head>
 <body>
 
@@ -11,52 +11,52 @@
 
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="produit" data-bs-toggle="tab" data-bs-target="#home" type="button"
-                    role="tab" aria-controls="home" aria-selected="true">Produits
+            <button aria-controls="home" aria-selected="true" class="nav-link active" data-bs-target="#home" data-bs-toggle="tab"
+                    id="produit" role="tab" type="button">Produits
             </button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
-                    role="tab" aria-controls="profile" aria-selected="false">Administrateur
+            <button aria-controls="profile" aria-selected="false" class="nav-link" data-bs-target="#profile" data-bs-toggle="tab"
+                    id="profile-tab" role="tab" type="button">Administrateur
             </button>
         </li>
     </ul>
 
     <div class="tab-content">
-        <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="produit">
+        <div aria-labelledby="produit" class="tab-pane active" id="home" role="tabpanel">
             <div class="row justify-content-center">
                 <div class="card col-sm-6 text-right m-2 mt-3" style="width: 18rem;" th:each="produit : ${ produits }">
-                    <img class="card-img-top" alt="..." th:src=" ${ '/images/' + produit.photoProduit}">
+                    <img alt="..." class="card-img-top" th:src=" ${ '/images/' + produit.photoProduit}">
                     <div class="card-body">
                         <a th:href="@{'/produit/view_produit/' + ${ produit.idProduit } }"><h5 class="card-title"
                                                                                                th:text="${ produit.modele}"></h5>
                         </a>
-                        <p class="card-text" th:text="${ produit.prixVente} + ' €' "> </p>
-                        <a href="#" class="btn btn-primary">Ajouter au panier</a>
+                        <p class="card-text" th:text="${ produit.prixVente} + ' €' "></p>
+                        <a class="btn btn-dark" href="#">Ajouter au panier</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div aria-labelledby="profile-tab" class="tab-pane" id="profile" role="tabpanel">
 
-            <form method="get" action="/produit">
+            <form action="/produit" method="get">
                 <div class="row my-4">
                     <div class="col-4">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" th:value="${search}" name="search"
-                                   placeholder="Rechercher"
-                                   aria-describedby="button-addon2">
-                            <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i
-                                    class="fa fa-search"
-                                    aria-hidden="true"></i>
+                            <input aria-describedby="button-addon2" class="form-control" name="search" placeholder="Rechercher"
+                                   th:value="${search}"
+                                   type="text">
+                            <button class="btn btn-outline-secondary" id="button-addon2" type="submit"><i
+                                    aria-hidden="true"
+                                    class="fa fa-search"></i>
                             </button>
                         </div>
                     </div>
                     <div class="col-4">
-                        <button type="submit" class="btn btn-primary">Rechercher</button>
+                        <button class="btn btn-dark" type="submit">Rechercher</button>
                     </div>
                     <div class="col-4" sec:authorize="hasRole('ROLE_ADMIN')">
-                        <a href="/produit/add" class="btn btn-primary">Ajouter un produit</a>
+                        <a class="btn btn-dark" href="/produit/add">Ajouter un produit</a>
                     </div>
                 </div>
             </form>
@@ -89,10 +89,10 @@
                     <td th:text="${ produit.photoProduit}"></td>
                     <td>
                         <a class="btn btn-secondary btn-sm" th:href="@{'/produit/edit/' + ${ produit.idProduit } }"><i
-                                class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                aria-hidden="true" class="fa fa-pencil-square-o"></i></a>
                         <button class="btn btn-danger btn-sm"
                                 th:onclick="|supprimer( 'produit' , ${produit.idProduit} )|"><i
-                                class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                aria-hidden="true" class="fa fa-trash-o"></i></button>
                     </td>
                 </tr>
                 </tbody>
